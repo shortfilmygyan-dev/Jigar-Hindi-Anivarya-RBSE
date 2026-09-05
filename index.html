@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RBSE Class 12 Hindi Anivarya</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background: #f4f6f9; color: #333; padding-bottom: 30px; }
+    header { background: #1b365d; color: white; text-align: center; padding: 18px 10px; border-radius: 8px; margin-bottom: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+    .tabs { display: flex; background: #002147; border-radius: 6px; overflow: hidden; margin-bottom: 15px; }
+    .tab-btn { flex: 1; padding: 12px; color: white; background: none; border: none; font-weight: bold; cursor: pointer; font-size: 0.95rem; }
+    .tab-btn.active { background: #0056b3; border-bottom: 4px solid #ffcc00; }
+    .container { max-width: 750px; margin: 0 auto; padding: 0 10px; }
+    .card { background: white; padding: 16px; border-radius: 8px; margin-bottom: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); border-left: 4px solid #0056b3; }
+    select { width: 100%; padding: 12px; border-radius: 6px; border: 1px solid #ccc; font-size: 1rem; margin-top: 8px; background: #fff; font-weight: bold; }
+    .badge { display: inline-block; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-bottom: 8px; text-transform: uppercase; }
+    .mcq { background: #e3f2fd; color: #0d47a1; }
+    .short { background: #e8f5e9; color: #1b5e20; }
+    .long { background: #fff3e0; color: #e65100; }
+    .q-title { font-weight: bold; font-size: 1.05rem; margin-bottom: 8px; color: #111; line-height: 1.4; }
+    .ans { background: #f8f9fa; padding: 10px; border-radius: 5px; border-left: 3px solid #28a745; margin-top: 6px; font-size: 0.98rem; color: #222; }
+    .btn { display: inline-block; background: #28a745; color: white; padding: 10px 16px; text-decoration: none; border-radius: 5px; margin-top: 10px; font-weight: bold; text-align: center; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h2>RBSE कक्षा 12 - हिन्दी अनिवार्य</h2>
+    <p>पाठ्यपुस्तक प्रश्नोत्तर एवं बोर्ड पेपर्स</p>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('ch-tab', this)">पाठ (Chapters)</button>
+    <button class="tab-btn" onclick="showTab('paper-tab', this)">15-वर्षीय पेपर्स</button>
+    <button class="tab-btn" onclick="showTab('model-tab', this)">मॉडल पेपर्स</button>
+  </div>
+
+  <div id="ch-tab">
+    <div class="card" style="border-left-color: #ffcc00;">
+      <label for="chapterSelect"><b>पाठ का चयन करें:</b></label>
+      <select id="chapterSelect" onchange="renderQuestions()">
+        <option value="ch1">पाठ 1: आत्मपरिचय / एक गीत (हरिवंश राय बच्चन)</option>
+        <option value="ch2">पाठ 2: पतंग (आलोक धन्वा)</option>
+        <option value="ch3">पाठ 3: कविता के बहाने / बात सीधी थी पर (कुंवर नारायण)</option>
+        <option value="ch4">पाठ 4: कैमरे में बंद अपाहिज (रघुवीर सहाय)</option>
+        <option value="ch5">पाठ 5: उषा (शमशेर बहादुर सिंह)</option>
+        <option value="ch6">पाठ 6: बादल राग (सूर्यकांत त्रिपाठी 'निराला')</option>
+        <option value="ch7">पाठ 7: कवितावली / लक्ष्मण-मूर्छा (तुलसीदास)</option>
+        <option value="ch8">पाठ 8: रुबाइयाँ (फ़िराक़ गोरखपुरी)</option>
+        <option value="ch9">पाठ 9: छोटा मेरा खेत / बगुलों के पंख (उमाशंकर जोशी)</option>
+        <option value="ch10">पाठ 10: भक्तिन (महादेवी वर्मा)</option>
+        <option value="ch11">पाठ 11: बाजार दर्शन (जैनेंद्र कुमार)</option>
+        <option value="ch12">पाठ 12: काले मेघा पानी दे (धर्मवीर भारती)</option>
+        <option value="ch13">पाठ 13: पहलवान की ढोलक (फणीश्वर नाथ 'रेणु')</option>
+        <option value="ch14">पाठ 14: शिरीष के फूल (हजारी प्रसाद द्विवेदी)</option>
+        <option value="ch15">पाठ 15: श्रम विभाजन और जाति प्रथा (भीमराव आंबेडकर)</option>
+        <option value="ch16">पाठ 16: सिल्वर वैडिंग (मनोहर श्याम जोशी)</option>
+        <option value="ch17">पाठ 17: जूझ (आनंद यादव)</option>
+        <option value="ch18">पाठ 18: अतीत में दबे पाँव (ओम थानवी)</option>
+      </select>
+    </div>
+    <div id="qList"></div>
+  </div>
+
+  <div id="paper-tab" class="hidden">
+    <div class="card">
+      <h3>RBSE Class 12 Hindi Board Paper 2025</h3>
+      <p>संपूर्ण हल सहित आधिकारिक प्रश्न पत्र।</p>
+      <a href="#" class="btn" target="_blank">Download PDF</a>
+    </div>
+  </div>
+
+  <div id="model-tab" class="hidden">
+    <div class="card">
+      <h3>Hindi Anivarya Model Paper - Set 1</h3>
+      <p>नवीनतम ब्लूप्रिंट एवं पैटर्न पर आधारित।</p>
+      <a href="#" class="btn" target="_blank">Open Model Paper</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  var data = {
+    ch1: [
+      { t: 'mcq', q: 'प्र.1 \'आत्मपरिचय\' कविता में कवि जीवन में क्या लिए फिरता है?', a: '(ब) प्यार' },
+      { t: 'mcq', q: 'प्र.2 कवि हरिवंश राय बच्चन का जन्म कब हुआ था?', a: '(अ) सन 1907' },
+      { t: 'mcq', q: 'प्र.3 कवि किसका गान करता है?', a: '(स) अपने मन का' },
+      { t: 'mcq', q: 'प्र.4 चिड़ियों के पंखों में क्या भर जाता है?', a: '(द) चंचलता' },
+      { t: 'short', q: 'प्र.5 \'स्नेह-सुरा\' से क्या तात्पर्य है?', a: 'प्रेम रूपी मदिरा।' },
+      { t: 'short', q: 'प्र.6 \'जग-जीवन का भार\' का आशय क्या है?', a: 'सांसारिक जिम्मेदारियाँ।' },
+      { t: 'long', q: 'प्र.7 \'आत्मपरिचय\' कविता का मूल भाव स्पष्ट कीजिए।', a: 'स्वयं को जानना जग को जानने से कठिन है, समाज में रहते हुए प्रेमपूर्वक जीना चाहिए।' }
+    ],
+    ch2: [
+      { t: 'mcq', q: 'प्र.1 \'पतंग\' कविता के रचयिता कौन हैं?', a: '(अ) आलोक धन्वा' },
+      { t: 'mcq', q: 'प्र.2 भादों के बाद कौन सा मौसम आता है?', a: '(स) शरद ऋतु' },
+      { t: 'short', q: 'प्र.3 शरद ऋतु के आगमन पर प्रकृति में क्या परिवर्तन आते हैं?', a: 'आकाश साफ़ और चमकीला हो जाता है।' }
+    ],
+    ch3: [
+      { t: 'mcq', q: 'प्र.1 \'कविता के बहाने\' के कवि कौन हैं?', a: '(ब) कुंवर नारायण' }
+    ],
+    ch10: [
+      { t: 'mcq', q: 'प्र.1 \'भक्तिन\' की लेखिका कौन हैं?', a: '(अ) महादेवी वर्मा' },
+      { t: 'short', q: 'प्र.2 भक्तिन का वास्तविक नाम क्या था?', a: 'लक्ष्मिन (लक्ष्मी)' }
+    ],
+    ch11: [
+      { t: 'mcq', q: 'प्र.1 \'बाजार दर्शन\' के लेखक कौन हैं?', a: '(ब) जैनेंद्र कुमार' }
+    ],
+    ch16: [
+      { t: 'mcq', q: 'प्र.1 \'सिल्वर वैडिंग\' के लेखक कौन हैं?', a: '(द) मनोहर श्याम जोशी' }
+    ]
+  };
+
+  function renderQuestions() {
+    var sel = document.getElementById('chapterSelect');
+    var val = sel.value;
+    var qList = document.getElementById('qList');
+    qList.innerHTML = '';
+
+    if (data[val] && data[val].length > 0) {
+      for (var i = 0; i < data[val].length; i++) {
+        var item = data[val][i];
+        var badgeClass = item.t === 'mcq' ? 'mcq' : (item.t === 'short' ? 'short' : 'long');
+        var badgeText = item.t === 'mcq' ? 'MCQ' : (item.t === 'short' ? 'अतिलघु/लघु' : 'निबंधात्मक');
+        var html = '<div class="card"><span class="badge ' + badgeClass + '">' + badgeText + '</span><div class="q-title">' + item.q + '</div><div class="ans"><b>उत्तर:</b> ' + item.a + '</div></div>';
+        qList.innerHTML += html;
+      }
+    } else {
+      qList.innerHTML = '<div class="card"><p>इस पाठ के प्रश्न अपडेट हो रहे हैं...</p></div>';
+    }
+  }
+
+  function showTab(tabId, btn) {
+    document.getElementById('ch-tab').classList.add('hidden');
+    document.getElementById('paper-tab').classList.add('hidden');
+    document.getElementById('model-tab').classList.add('hidden');
+    
+    var btns = document.querySelectorAll('.tab-btn');
+    for(var i=0; i<btns.length; i++) {
+      btns[i].classList.remove('active');
+    }
+    
+    document.getElementById(tabId).classList.remove('hidden');
+    btn.classList.add('active');
+  }
+
+  renderQuestions();
+</script>
+</body>
+</html>
